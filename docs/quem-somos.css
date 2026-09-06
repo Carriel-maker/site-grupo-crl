@@ -1,0 +1,294 @@
+/* =========================================================================
+   GRUPO CRL — Seção "Quem Somos"
+   Escopo isolado sob .quem-somos — pode ser colada em qualquer página.
+   ========================================================================= */
+
+.quem-somos {
+  --qs-bg:      #ffffff;
+  --qs-ink:     #101216;
+  --qs-text:    #565f6b;
+  --qs-faint:   #9aa2ae;
+  --qs-rule:    #e4e7eb;
+  --qs-accent:  #1b3f9e;
+  --qs-max:     1240px;
+  --qs-ease:    cubic-bezier(.4, 0, .2, 1);
+
+  background: var(--qs-bg);
+  color: var(--qs-ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: clamp(56px, 9vw, 112px) 0 clamp(48px, 7vw, 88px);
+}
+
+.quem-somos *,
+.quem-somos *::before,
+.quem-somos *::after { box-sizing: border-box; }
+
+.qs-inner {
+  width: min(100% - 48px, var(--qs-max));
+  margin-inline: auto;
+  /* escondido enquanto a abertura está na frente; entra ao passar o mouse */
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .85s var(--qs-ease), transform .85s var(--qs-ease);
+}
+.quem-somos.qs-entered .qs-inner {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Abertura: tela branca com o logotipo ao centro -------------------- */
+/* Fica parada até o mouse passar sobre o logo (ou clique/toque). */
+
+.qs-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--qs-bg);
+  transition: opacity .8s var(--qs-ease), transform .8s var(--qs-ease), visibility .8s;
+}
+.qs-intro.qs-intro--leaving {
+  opacity: 0;
+  transform: translateY(-22px);
+  visibility: hidden;
+  pointer-events: none;
+}
+.qs-intro[hidden] { display: none; }
+
+.qs-intro-trigger {
+  display: block;
+  width: min(320px, 60vw);   /* menor / mais minimalista */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.qs-intro-trigger:focus-visible {
+  outline: 1px solid rgba(27, 63, 158, .35);
+  outline-offset: 18px;
+  border-radius: 3px;
+}
+.qs-intro-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* cores originais, sem tratamento */
+}
+
+/* ---- Título / assinatura ------------------------------------------------ */
+
+.qs-hero { text-align: center; }
+
+.qs-logo-wrap {
+  position: relative;
+  width: min(560px, 66vw);
+  margin-inline: auto;
+  display: grid;            /* empilha as duas versões do logo na mesma célula */
+}
+
+/* duas imagens sobrepostas: cores por baixo, preto puro por cima.
+   sem filtro CSS — evita o desfoque de camada composta em telas HiDPI. */
+.qs-logo {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.qs-logo--black {
+  transition: opacity 280ms var(--qs-ease);
+}
+/* hover / foco: o preto some e revela o logo colorido (com o "_" azul) */
+.qs-logo-wrap:hover .qs-logo--black,
+.qs-logo-wrap:focus-within .qs-logo--black {
+  opacity: 0;
+}
+
+/* brilho discreto sobre o "_" azul — só aparece junto com a cor */
+.qs-glint {
+  position: absolute;
+  left: 55.1%;
+  top: 57%;
+  width: 7.6%;
+  height: 9%;
+  overflow: hidden;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms var(--qs-ease);
+}
+.qs-logo-wrap:hover .qs-glint,
+.qs-logo-wrap:focus-within .qs-glint { opacity: .82; }
+.qs-glint::after {
+  content: "";
+  position: absolute;
+  inset: -45% auto -45% -90%;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .95), transparent);
+  transform: skewX(-18deg);
+  animation: qs-shine 8s ease-in-out infinite;
+}
+@keyframes qs-shine {
+  0%, 72%  { left: -90%; opacity: 0; }
+  76%      { opacity: .6; }
+  84%      { left: 150%; opacity: .6; }
+  88%, 100%{ left: 150%; opacity: 0; }
+}
+
+.qs-signature {
+  margin: 20px 0 0;
+  color: var(--qs-faint);
+  font-family: "Jost", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(10px, 1.05vw, 12px);
+  font-weight: 400;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+}
+.qs-signature .qs-dot {
+  margin-inline: .95em;
+  letter-spacing: normal;
+  color: var(--qs-rule);
+}
+
+/* ---- Logos das quatro marcas ----------------------------------------- */
+
+.qs-brands {
+  margin-top: clamp(56px, 8vw, 92px);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+}
+
+.qs-brand {
+  position: relative;
+  display: grid;          /* mesma técnica do logo do topo: cor + preto empilhados */
+  place-items: center;
+  min-width: 0;
+  padding: 8px 4px;
+  text-decoration: none;
+}
+
+.qs-brand-img {
+  grid-area: 1 / 1;
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  max-height: 62px;
+  object-fit: contain;
+}
+
+/* CRL! é a lockup mais larga — um pouco mais de largura equilibra a altura ótica */
+.qs-brand[data-brand="crl"] .qs-brand-img { max-width: 320px; max-height: 48px; }
+
+/* preto por cima; some no hover / foco / toque revelando as cores originais */
+.qs-brand-img--black {
+  transition: opacity 280ms var(--qs-ease);
+}
+.qs-brand:hover .qs-brand-img--black,
+.qs-brand:focus-visible .qs-brand-img--black,
+.qs-brand.is-active .qs-brand-img--black {
+  opacity: 0;
+}
+
+.qs-brand:focus-visible {
+  outline: 1px solid rgba(27, 63, 158, .30);
+  outline-offset: 12px;
+  border-radius: 3px;
+}
+
+.qs-divider {
+  width: 1px;
+  height: 84px;
+  background: var(--qs-rule);
+}
+
+/* ---- Texto institucional -------------------------------------------- */
+
+.qs-about { margin-top: clamp(64px, 9vw, 104px); }
+
+.qs-kicker {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: clamp(24px, 3vw, 38px);
+}
+.qs-kicker h3 {
+  margin: 0;
+  color: var(--qs-faint);
+  font-family: "Jost", "Helvetica Neue", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .44em;
+  text-transform: uppercase;
+}
+.qs-kicker span {
+  display: block;
+  width: 56px;
+  height: 1px;
+  background: var(--qs-rule);
+}
+
+.qs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 84px);
+}
+
+.qs-col {
+  margin: 0;
+  color: var(--qs-text);
+  font-size: clamp(14px, 1.35vw, 15.5px);
+  font-weight: 400;
+  line-height: 1.78;
+  text-wrap: pretty;
+}
+.qs-col p { margin: 0 0 22px; }
+.qs-col p:last-child { margin-bottom: 0; }
+
+.qs-col--right {
+  border-left: 1px solid var(--qs-rule);
+  padding-left: clamp(40px, 6vw, 84px);
+}
+
+/* ---- Responsivo ---------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .qs-brands {
+    grid-template-columns: 1fr 1fr;
+    gap: 44px 30px;
+  }
+  .qs-divider { display: none; }
+  .qs-grid { grid-template-columns: 1fr; gap: 0; }
+  .qs-col--right {
+    border-left: 0;
+    padding-left: 0;
+    margin-top: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .qs-inner { width: min(100% - 32px, var(--qs-max)); }
+  .qs-logo-wrap { width: min(440px, 84vw); }
+  .qs-signature { letter-spacing: .26em; line-height: 1.9; }
+  .qs-brands { grid-template-columns: 1fr; gap: 36px; }
+  .qs-brand img,
+  .qs-brand[data-brand="crl"] img { max-width: 220px; max-height: 58px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quem-somos *,
+  .quem-somos *::before,
+  .quem-somos *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* a abertura continua (tela branca + logo), só que sem transição:
+     ao passar o mouse / clicar, a seção aparece de imediato */
+  .quem-somos.qs-entered .qs-inner { opacity: 1 !important; transform: none !important; }
+}
