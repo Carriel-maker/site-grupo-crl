@@ -45,8 +45,11 @@
   position: fixed;
   inset: 0;
   z-index: 90;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.2vw, 22px);
   padding: 24px;
   background: var(--qs-bg);
   transition: opacity .8s var(--qs-ease), transform .8s var(--qs-ease), visibility .8s;
@@ -58,6 +61,19 @@
   pointer-events: none;
 }
 .qs-intro[hidden] { display: none; }
+
+/* dica bem sutil acima do logo: "passe o mouse aqui" */
+.qs-intro-hint {
+  font-family: "Jost", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(9px, 1vw, 11px);
+  font-weight: 400;
+  letter-spacing: .46em;
+  text-transform: uppercase;
+  color: #c4c9d0;
+  opacity: .55;
+  user-select: none;
+  pointer-events: none;
+}
 
 .qs-intro-trigger {
   display: block;
