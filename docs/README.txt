@@ -25,8 +25,9 @@ COMO EMBUTIR NO SITE
   4. Ajuste os href="#" dos logos para os endereços reais de cada marca.
      Já apontados (abrem em nova aba):
        - CRL Gestão e Consultoria -> https://www.crlgestao.com.br
+       - MIP                      -> https://www.plataformamip.com.br
        - Rede Diz                 -> https://rededizpaulinia.com.br
-     Faltam: COM\C e MIP.
+     Falta: COM\C.
 
 ABERTURA
   - Ao carregar: tela branca com o logotipo GRUPO_CRL (cores originais,
