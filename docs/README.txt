@@ -22,7 +22,8 @@ COMO EMBUTIR NO SITE
   2. Inclua quem-somos.css no <head> e quem-somos.js antes de </body>.
   3. A fonte Jost vem do Google Fonts (só os rótulos em maiúsculas a usam);
      o corpo usa a pilha Helvetica/Arial do sistema.
-  4. Ajuste os href="#" dos quatro logos para os endereços reais de cada marca.
+  4. Ajuste os href="#" dos logos para os endereços reais de cada marca.
+     (Rede Diz já aponta para https://rededizpaulinia.com.br, abre em nova aba.)
 
 ABERTURA
   - Ao carregar: tela branca com o logotipo GRUPO_CRL (cores originais,
