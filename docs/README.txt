@@ -23,7 +23,10 @@ COMO EMBUTIR NO SITE
   3. A fonte Jost vem do Google Fonts (só os rótulos em maiúsculas a usam);
      o corpo usa a pilha Helvetica/Arial do sistema.
   4. Ajuste os href="#" dos logos para os endereços reais de cada marca.
-     (Rede Diz já aponta para https://rededizpaulinia.com.br, abre em nova aba.)
+     Já apontados (abrem em nova aba):
+       - CRL Gestão e Consultoria -> https://www.crlgestao.com.br
+       - Rede Diz                 -> https://rededizpaulinia.com.br
+     Faltam: COM\C e MIP.
 
 ABERTURA
   - Ao carregar: tela branca com o logotipo GRUPO_CRL (cores originais,
